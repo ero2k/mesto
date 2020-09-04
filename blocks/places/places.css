@@ -1,0 +1,9 @@
+.places {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    column-gap: 18px;
+    row-gap: 21px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
