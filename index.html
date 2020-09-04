@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="body">
+    <div class="page">
+        <header class="header header__border_bottom max-width">
+            <a href="#"><img src="./images/logo/logo.svg" alt="Логотип" class="logo"></a>
+        </header>
+
+
+        <main class="content max-width">
+            <section class="profile">
+                <img src="./images/profile/avatar.jpg" alt="Фото профиля" class="profile__avatar">
+                <div class="profile__info">
+                    <h1 class="header__title profile_item_center">Жак-Ив Кусто</h1>
+                    <div class="profile__edit profile_item_center item-hover"></div>
+                    <p class="subtitle profile-subtitle_grid text-size_paragraph">Исследователь океана</p>
+                </div>
+                <button class="add-button item-hover">
+                    <img src="./images/profile/add.svg" alt="Добавить" class="add-button__image">
+                </button>
+            </section>
+
+            <section>
+                <ul class="places">
+                    <li class="place">
+                        <img src="./images/place/place-bangladesh.jpg" class="place__photo" alt="фото">
+                        <div class="place__discription">
+                            <p class="place__title text-size_m">Бангладеш
+                            <p>
+                                <img src="./images/place/place-heart.svg" alt="Сердечко" class="place__like item-hover">
+                        </div>
+                    </li>
+                    <li class="place">
+                        <img src="./images/place/place-iran.jpg" class="place__photo" alt="фото">
+                        <div class="place__discription">
+                            <p class="place__title text-size_m">Иран
+                            <p>
+                                <img src="./images/place/place-heart.svg" alt="Сердечко" class="place__like item-hover">
+                        </div>
+                    </li>
+                    <li class="place">
+                        <img src="./images/place/place-minneapolis.jpg" class="place__photo" alt="фото">
+                        <div class="place__discription">
+                            <p class="place__title text-size_m">Миннеаполис
+                            <p>
+                                <img src="./images/place/place-heart.svg" alt="Сердечко" class="place__like item-hover">
+                        </div>
+                    </li>
+                    <li class="place">
+                        <img src="./images/place/place-philippines.jpg" class="place__photo" alt="фото">
+                        <div class="place__discription">
+                            <p class="place__title text-size_m">Филиппины
+                            <p>
+                                <img src="./images/place/place-heart.svg" alt="Сердечко" class="place__like item-hover">
+                        </div>
+                    </li>
+                    <li class="place">
+                        <img src="./images/place/place-sweden.jpg" class="place__photo" alt="фото">
+                        <div class="place__discription">
+                            <p class="place__title text-size_m">Швеция
+                            <p>
+                                <img src="./images/place/place-heart.svg" alt="Сердечко" class="place__like item-hover">
+                        </div>
+                    </li>
+                    <li class="place">
+                        <img src="./images/place/place-switzerland.jpg" class="place__photo" alt="фото">
+                        <div class="place__discription">
+                            <p class="place__title text-size_m">Швейцария
+                            <p>
+                                <img src="./images/place/place-heart.svg" alt="Сердечко" class="place__like item-hover">
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+        <section class="popup">
+            <div class="popup__container">
+                <h2 class="popup__title text-size_m">Редактировать профиль</h2>
+                <input type="text" class="popup__name input_border-bottom">
+                <input type="text" class="popup__profession input_border-bottom">
+                <button class="popup__button-save">Сохранить</button>
+                <button class="popup__button-close item-hover">
+                    <img src="./images/popup/close-icon.svg" class="popup__close-image">
+                </button>
+            </div>
+        </section>
+
+        <footer class="footer max-width">
+            <p class="footer__author text-size_paragraph">&#169; 2020 Mesto Russia</p>
+        </footer>
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
