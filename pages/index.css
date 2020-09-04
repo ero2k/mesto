@@ -1,0 +1,54 @@
+@import url(../vendor/fonts/fonts.css);
+@import url(../vendor/normalize.css);
+
+@import url(../blocks/max-width/max-width.css);
+
+@import url(../blocks/text-size/text-size_m.css);
+
+@import url(../blocks/text-size/text-size_paragraph.css);
+
+@import url(../blocks/add-button/add-button.css);
+
+@import url(../blocks/input/input_border-bottom.css);
+
+@import url(../blocks/item-hover/item-hover.css);
+
+@import url(../blocks/subtitle/subtitle.css);
+
+@import url(../blocks/body/body.css);
+
+@import url(../blocks/page/page.css);
+
+@import url(../blocks/logo/logo.css);
+
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__title/header__title.css);
+@import url(../blocks/header/__border/header__border_bottom.css);
+
+@import url(../blocks/content/content.css);
+
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__edit/profile__edit.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/_grid/profile-subtitle_grid.css);
+@import url(../blocks/profile/_item/profile_item_center.css);
+
+@import url(../blocks/places/places.css);
+@import url(../blocks/place/place.css);
+@import url(../blocks/place/__discription/place__discription.css);
+@import url(../blocks/place/__photo/place__photo.css);
+@import url(../blocks/place/__title/place__titile.css);
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__alarm/popup__alarm.css);
+@import url(../blocks/popup/__button/popup__button-close.css);
+@import url(../blocks/popup/__button/popup__button-save.css);
+@import url(../blocks/popup/__close/popup__close-image.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__name/popup__name.css);
+@import url(../blocks/popup/__profession/popup__profession.css);
+@import url(../blocks/popup/__tiltle/popup__tiltle.css);
+@import url(../blocks/popup/_opened/popup_is-opened.css);
+
+@import url(../blocks/footer/__author/footer__author.css);

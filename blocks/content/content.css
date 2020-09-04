@@ -1,0 +1,10 @@
+.content {
+    margin-bottom: 66px;
+}
+
+
+@media all and (max-width: 770px) {
+    .content {
+        margin-bottom: 48px;
+    }
+}
