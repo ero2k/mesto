@@ -9,7 +9,7 @@ const buttonPopupClose = popupContainer.querySelector('.popup__button-close');
 
 const editProfileButton = document.querySelector('.profile__edit');
 
-const profileName = document.querySelector('.profile__info .header__title');
+const profileName = document.querySelector('.profile__info .profile__title');
 const profileProffesional = document.querySelector('.profile__info .subtitle');
 
 
