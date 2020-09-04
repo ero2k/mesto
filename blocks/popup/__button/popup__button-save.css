@@ -1,0 +1,13 @@
+.popup__button-save {
+    padding: 0;
+    border: none;
+    margin: 0;
+    height: 50px;
+    color: white;
+    background-color: black;
+}
+
+.popup__button-save:hover {
+    opacity: .8;
+    cursor: pointer;
+}
