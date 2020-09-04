@@ -1,0 +1,10 @@
+.profile-subtitle_grid {
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+
+@media all and (max-width: 770px) {
+    .profile_subtitle_grid {
+        justify-self: center;
+    }
+}
