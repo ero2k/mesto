@@ -8,6 +8,11 @@
     border: 1px solid #FFFFFF;
 }
 
+.profile__edit:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
 @media all and (max-width: 770px) {
 
     .profile__edit {
