@@ -83,15 +83,15 @@
         </main>
 
         <section class="popup">
-            <div class="popup__container">
+            <form action="" method="get" name="edit-profile" class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__name input_border-bottom">
-                <input type="text" class="popup__profession input_border-bottom">
+                <input type="text" class="popup__input popup__input_js_name" name="name">
+                <input type="text" class="popup__input popup__input_js_profession" name="profession">
                 <button class="popup__button-save">Сохранить</button>
                 <button class="popup__button-close">
                     <img src="./images/popup/close-icon.svg" class="popup__close-image">
                 </button>
-            </div>
+            </form>
         </section>
 
         <footer class="footer max-width">
