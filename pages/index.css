@@ -3,10 +3,6 @@
 
 @import url(../blocks/max-width/max-width.css);
 
-@import url(../blocks/text-size/text-size_m.css);
-
-@import url(../blocks/text-size/text-size_paragraph.css);
-
 @import url(../blocks/alignment/alignment.css);
 
 @import url(../blocks/add-button/add-button.css);
@@ -14,8 +10,6 @@
 @import url(../blocks/input/input_border-bottom.css);
 
 @import url(../blocks/item-hover/item-hover.css);
-
-@import url(../blocks/subtitle/subtitle.css);
 
 @import url(../blocks/body/body.css);
 
@@ -29,10 +23,10 @@
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__subtitle/profile__subtitile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__info/profile__info.css);
-@import url(../blocks/profile/_grid/profile-subtitle_grid.css);
 
 @import url(../blocks/places/places.css);
 @import url(../blocks/place/place.css);
