@@ -1,6 +1,6 @@
 .place__photo {
-    width: 282px;
-    height: 282px;
+    width: 100%;
+    height: 100%;
     vertical-align: bottom;
     border-radius: 10px 10px 0 0;
 }

@@ -6,10 +6,16 @@
     margin: 0;
     grid-column-start: 1;
     grid-column-end: -1;
+    max-width: 500px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media all and (max-width: 770px) {
     .profile__subtitle {
         justify-self: center;
+        font-size: 14px;
+        line-height: 17px;
     }
 }

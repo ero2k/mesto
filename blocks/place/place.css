@@ -1,3 +1,7 @@
 .place {
     margin: 0 auto;
+    max-width: 282px;
+    max-height: 362px;
+    display: grid;
+    grid-template-rows: 282px 80px;
 }

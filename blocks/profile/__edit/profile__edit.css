@@ -1,5 +1,5 @@
 .profile__edit {
-    background-image: url(../../../images/profile/profile-pen.png);
+    background-image: url(../../../images/profile/profile-pen.svg);
     width: 24px;
     height: 24px;
     background-repeat: no-repeat;
@@ -18,5 +18,7 @@
 
     .profile__edit {
         align-self: center;
+        width: 18px;
+        height: 18px;
     }
 }
