@@ -20,5 +20,6 @@
 @media all and (max-width: 770px) {
     .profile__title {
         font-size: 24px;
+        max-width: 250px;
     }
 }
