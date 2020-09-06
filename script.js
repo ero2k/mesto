@@ -1,52 +1,49 @@
 const popup = document.querySelector('.popup');
 
 const popupContainer = popup.querySelector('.popup__container');
-const inputName = popupContainer.querySelector('.popup__name');
-const inputProfession = popupContainer.querySelector('.popup__profession');
+const inputName = popupContainer.querySelector('.popup__input_js_name');
+const inputProfession = popupContainer.querySelector('.popup__input_js_profession');
 const buttonSave = popupContainer.querySelector('.popup__button-save');
 const buttonPopupClose = popupContainer.querySelector('.popup__button-close');
 
 
 const editProfileButton = document.querySelector('.profile__edit');
 
-const profileName = document.querySelector('.profile__info .profile__title');
-const profileProffesional = document.querySelector('.profile__info .subtitle');
+const profileName = document.querySelector('.profile__title');
+const profileProffesional = document.querySelector('.profile__subtitle');
 
 
 function editProfile() {
+    event.preventDefault();
     popup.classList.toggle('popup_is-opened');
 
-    inputName.value = profileName.textContent;
-    inputProfession.value = profileProffesional.textContent;
+    if (popup.classList.contains('popup_is-opened')) {
+        inputName.value = profileName.textContent;
+        inputProfession.value = profileProffesional.textContent;
+    }
 }
 
 function saveProfile() {
+    event.preventDefault();
     if (inputName.value !== '' && inputProfession.value !== '') {
 
         profileName.textContent = inputName.value;
         profileProffesional.textContent = inputProfession.value;
-        popup.classList.toggle('popup_is-opened');
 
-    } else {
-        const alarmText = `<p class='popup__alarm'>Одно или несколько полей не заполнено</p>`
-        popup.querySelector('.popup__title').insertAdjacentHTML('afterend', alarmText)
+        editProfile();
     }
-}
-
-function closePopup() {
-    popup.classList.toggle('popup_is-opened');
 }
 
 function closePopupByClickOverlay() {
     if (event.target === event.currentTarget) {
-        popup.classList.toggle('popup_is-opened');
+        editProfile();
     }
 }
 
-buttonPopupClose.addEventListener('click', closePopup);
+buttonPopupClose.addEventListener('click', editProfile);
 
 popup.addEventListener('click', closePopupByClickOverlay);
 
 editProfileButton.addEventListener('click', editProfile);
 
-buttonSave.addEventListener('click', saveProfile);
+popupContainer.addEventListener('submit', saveProfile);
