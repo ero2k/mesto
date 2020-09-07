@@ -25,13 +25,10 @@ function editProfile() {
 
 function saveProfile() {
     event.preventDefault();
-    if (inputName.value !== '' && inputProfession.value !== '') {
+    profileName.textContent = inputName.value;
+    profileProffesional.textContent = inputProfession.value;
 
-        profileName.textContent = inputName.value;
-        profileProffesional.textContent = inputProfession.value;
-
-        editProfile();
-    }
+    editProfile();
 }
 
 function closePopupByClickOverlay() {
