@@ -42,4 +42,13 @@
 @import url(../blocks/popup/__tiltle/popup__tiltle.css);
 @import url(../blocks/popup/_opened/popup_is-opened.css);
 
+@import url(../blocks/new-place/new-place.css);
+@import url(../blocks/new-place/__button/new-place__button-close.css);
+@import url(../blocks/new-place/__button/new-place__button-save.css);
+@import url(../blocks/new-place/__close/new-place__close-image.css);
+@import url(../blocks/new-place/__container/new-place__container.css);
+@import url(../blocks/new-place/__input/new-place__input.css);
+@import url(../blocks/new-place/__tiltle/new-place__tiltle.css);
+@import url(../blocks/new-place/_opened/new-place_is-opened.css);
+
 @import url(../blocks/footer/__author/footer__author.css);

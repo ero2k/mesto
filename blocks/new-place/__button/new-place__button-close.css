@@ -1,0 +1,21 @@
+.new-place__button-close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    border: none;
+    box-shadow: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.new-place__button-close:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+@media all and (max-width: 500px) {
+    .new-place__button-close {
+        right: 0;
+    }
+}

@@ -29,58 +29,24 @@
 
             <section>
                 <ul class="places">
-                    <li class="place">
-                        <img src="./images/place/place-bangladesh.jpg" class="place__photo" alt="фото">
-                        <div class="place__discription">
-                            <h2 class="place__title">Бангладеш
-                            </h2>
-                            <button type="button" class="place__like"></button>
-                        </div>
-                    </li>
-                    <li class="place">
-                        <img src="./images/place/place-iran.jpg" class="place__photo" alt="фото">
-                        <div class="place__discription">
-                            <h2 class="place__title">Иран
-                            </h2>
-                            <button type="button" class="place__like"></button>
-                        </div>
-                    </li>
-                    <li class="place">
-                        <img src="./images/place/place-minneapolis.jpg" class="place__photo" alt="фото">
-                        <div class="place__discription">
-                            <h2 class="place__title">Миннеаполис
-                            </h2>
-                            <button type="button" class="place__like"></button>
-                        </div>
-                    </li>
-                    <li class="place">
-                        <img src="./images/place/place-philippines.jpg" class="place__photo" alt="фото">
-                        <div class="place__discription">
-                            <h2 class="place__title ">Филиппины
-                            </h2>
-                            <button type="button" class="place__like"></button>
-                        </div>
-                    </li>
-                    <li class="place">
-                        <img src="./images/place/place-sweden.jpg" class="place__photo" alt="фото">
-                        <div class="place__discription">
-                            <h2 class="place__title ">Швеция
-                            </h2>
-                            <button type="button" class="place__like"></button>
-                        </div>
-                    </li>
-                    <li class="place">
-                        <img src="./images/place/place-switzerland.jpg" class="place__photo" alt="фото">
-                        <div class="place__discription">
-                            <h2 class="place__title ">Швейцария
-                            </h2>
-                            <button type="button" class="place__like"></button>
-                        </div>
-                    </li>
+
                 </ul>
             </section>
 
         </main>
+
+        <template id="placecard">
+
+            <li class="place">
+                <img src="" class="place__photo" alt="фото">
+                <div class="place__discription">
+                    <h2 class="place__title">
+                    </h2>
+                    <button type="button" class="place__like"></button>
+                </div>
+            </li>
+
+        </template>
 
         <section class="popup">
             <form action="#" name="edit-profile" class="popup__container">
@@ -90,6 +56,20 @@
                 <button type="submit" class="popup__button-save">Сохранить</button>
                 <button type="button" class="popup__button-close">
                     <img src="./images/popup/close-icon.svg" class="popup__close-image" alt="Закрыть">
+                </button>
+            </form>
+        </section>
+
+        <section class="new-place">
+            <form action="#" name="add-newplace" class="new-place__container">
+                <h2 class="new-place__title">Новое место</h2>
+                <input type="text" class="new-place__input new-place__input_js_title" name="title" value="Название">
+                <input type="text" class="new-place__input new-place__input_js_url" name="url"
+                    value="Ссылка на картинку">
+
+                <button type="submit" class="new-place__button-save">Создать</button>
+                <button type="button" class="new-place__button-close">
+                    <img src="./images/popup/close-icon.svg" class="new-place__close-image" alt="Закрыть">
                 </button>
             </form>
         </section>
