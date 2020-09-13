@@ -35,10 +35,15 @@
 
         </main>
 
+        <!-- Шаблон карточки с местами -->
         <template id="placecard">
 
             <li class="place">
                 <img src="" class="place__photo" alt="фото">
+                <button type="button" class="place__trash
+                ">
+                    <img src="./images/place/place-trash.svg" alt="Удалить">
+                </button>
                 <div class="place__discription">
                     <h2 class="place__title">
                     </h2>
@@ -48,6 +53,7 @@
 
         </template>
 
+        <!-- попап редактирование профиля -->
         <section class="popup">
             <form action="#" name="edit-profile" class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
@@ -60,12 +66,14 @@
             </form>
         </section>
 
+        <!-- попап добавление карточки -->
         <section class="new-place">
             <form action="#" name="add-newplace" class="new-place__container">
                 <h2 class="new-place__title">Новое место</h2>
-                <input type="text" class="new-place__input new-place__input_js_title" name="title" value="Название">
+                <input type="text" class="new-place__input new-place__input_js_title" name="title"
+                    placeholder="Название">
                 <input type="text" class="new-place__input new-place__input_js_url" name="url"
-                    value="Ссылка на картинку">
+                    placeholder="Ссылка на картинку">
 
                 <button type="submit" class="new-place__button-save">Создать</button>
                 <button type="button" class="new-place__button-close">

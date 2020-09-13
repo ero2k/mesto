@@ -13,31 +13,6 @@ const profileProffesional = document.querySelector('.profile__subtitle');
 
 const places = document.querySelector('.places');
 
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 
 function editProfile() {
@@ -64,19 +39,6 @@ function closePopupByClickOverlay() {
     }
 }
 
-function addPlace(img, title) {
-
-    const placeTemplate = document.querySelector('#placecard').content;
-    const placeElement = placeTemplate.cloneNode(true);
-
-    placeElement.querySelector('.place__photo').src = img;
-    placeElement.querySelector('.place__title').textContent = title;
-
-    places.append(placeElement);
-}
-
-
-initialCards.forEach(item => addPlace(item.link, item.name))
 
 buttonPopupClose.addEventListener('click', editProfile);
 
@@ -85,3 +47,93 @@ popup.addEventListener('click', closePopupByClickOverlay);
 editProfileButton.addEventListener('click', editProfile);
 
 popupContainer.addEventListener('submit', saveProfile);
+
+
+// Добавление карточек на страницу
+const placeAddButton = document.querySelector('.profile__button-add')
+const popupNewPlace = document.querySelector('.new-place')
+const closeNewPlace = popupNewPlace.querySelector('.new-place__button-close')
+const buttonSaveCard = popupNewPlace.querySelector('.new-place__button-save')
+const newPlaceForm = popupNewPlace.querySelector('.new-place__container')
+
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+function openFormAddCard() {
+    popupNewPlace.classList.toggle('new-place_is-opened')
+}
+
+placeAddButton.addEventListener('click', openFormAddCard)
+closeNewPlace.addEventListener('click', openFormAddCard)
+
+
+function addPlace(img, title) {
+
+    const placeTemplate = document.querySelector('#placecard').content;
+    const placeElement = placeTemplate.cloneNode(true);
+
+    placeElement.querySelector('.place__photo').src = img;
+    placeElement.querySelector('.place__title').textContent = title;
+
+    places.prepend(placeElement);
+}
+
+
+initialCards.forEach(item => addPlace(item.link, item.name))
+
+
+function saveCard() {
+    event.preventDefault();
+
+    const title = popupNewPlace.querySelector('.new-place__input_js_title').value
+    const link = popupNewPlace.querySelector('.new-place__input_js_url').value
+
+    addPlace(link, title)
+
+    openFormAddCard()
+}
+
+newPlaceForm.addEventListener('submit', saveCard)
+
+
+// Like place
+const buttonLike = document.querySelectorAll('.place__like')
+
+function placeLikeSelected() {
+    this.classList.toggle('place__like_selected')
+}
+
+buttonLike.forEach(item => item.addEventListener('click', placeLikeSelected))
+
+
+// Deleted place
+const buttonTrash = document.querySelectorAll('.place__trash')
+
+function placeDeleted() {
+    this.parentNode.remove()
+}
+
+buttonTrash.forEach(item => item.addEventListener('click', placeDeleted))
