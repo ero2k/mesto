@@ -53,4 +53,13 @@
 @import url(../blocks/new-place/__tiltle/new-place__tiltle.css);
 @import url(../blocks/new-place/_opened/new-place_is-opened.css);
 
+@import url(../blocks/view-pic/view-pic.css);
+@import url(../blocks/view-pic/_is-opened/view-pic_is-opened.css);
+@import url(../blocks/view-pic/__img/view-pic__img.css);
+@import url(../blocks/view-pic/__caption/view-pic__caption.css);
+@import url(../blocks/view-pic/__close/view-pic__close-image.css);
+@import url(../blocks/view-pic/__button/view-pic__button-close.css);
+@import url(../blocks/view-pic/__container/view-pic__container.css);
+@import url(../blocks/view-pic/__figure/view-pic__figure.css);
+
 @import url(../blocks/footer/__author/footer__author.css);

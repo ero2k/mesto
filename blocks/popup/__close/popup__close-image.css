@@ -1,3 +1,9 @@
 .popup__close-image {
     width: 49px;
 }
+
+@media all and (max-width: 770px) {
+    .popup__close-image {
+        width: 35px;
+    }
+}

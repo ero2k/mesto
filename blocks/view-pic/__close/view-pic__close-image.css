@@ -1,0 +1,9 @@
+.view-pic__close-image {
+    width: 49px;
+}
+
+@media all and (max-width: 500px) {
+    .view-pic__close-image {
+        width: 35px;
+    }
+}

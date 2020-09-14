@@ -14,8 +14,9 @@
     cursor: pointer;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 770px) {
     .popup__button-close {
-        right: 0;
+        right: -26px;
+        top: -26px;
     }
 }

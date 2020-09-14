@@ -4,3 +4,7 @@
     vertical-align: bottom;
     border-radius: 10px 10px 0 0;
 }
+
+.place__photo:hover {
+    cursor: pointer;
+}

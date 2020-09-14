@@ -11,3 +11,9 @@
     opacity: .8;
     cursor: pointer;
 }
+
+@media all and (max-width: 770px) {
+    .popup__button-save {
+        min-height: 46px;
+    }
+}

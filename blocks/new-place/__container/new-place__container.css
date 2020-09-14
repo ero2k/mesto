@@ -9,3 +9,10 @@
     border-radius: 10px;
     position: relative;
 }
+
+@media all and (max-width: 770px) {
+    .new-place__container {
+        max-width: 240px;
+        padding: 30px 20px;
+    }
+}

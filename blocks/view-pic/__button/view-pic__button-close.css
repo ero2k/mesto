@@ -1,4 +1,4 @@
-.new-place__button-close {
+.view-pic__button-close {
     position: absolute;
     top: -40px;
     right: -40px;
@@ -9,14 +9,14 @@
     padding: 0;
 }
 
-.new-place__button-close:hover {
+.view-pic__button-close:hover {
     opacity: .6;
     cursor: pointer;
 }
 
-@media all and (max-width: 770px) {
-    .new-place__button-close {
-        right: -26px;
-        top: -26px;
+@media all and (max-width: 500px) {
+    .view-pic__button-close {
+        right: -30px;
+        top: -30px;
     }
 }

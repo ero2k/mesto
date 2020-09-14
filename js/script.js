@@ -12,6 +12,7 @@ const profileName = document.querySelector('.profile__title');
 const profileProffesional = document.querySelector('.profile__subtitle');
 
 const places = document.querySelector('.places');
+const place = document.querySelector('.place');
 
 
 
@@ -137,3 +138,28 @@ function placeDeleted() {
 }
 
 buttonTrash.forEach(item => item.addEventListener('click', placeDeleted))
+
+// view image
+
+const placePhoto = places.querySelectorAll('.place__photo')
+const viewPic = document.querySelector('.view-pic')
+const viewPicBtnClose = viewPic.querySelector('.view-pic__button-close')
+
+function viewPicOpened() {
+    viewPic.classList.toggle('view-pic_is-opened')
+}
+
+function viewPicture() {
+    const photo = this.src
+    const title = this.parentNode.querySelector('.place__title').textContent
+
+    viewPic.querySelector('.view-pic__img').src = photo
+    viewPic.querySelector('.view-pic__caption').textContent = title
+
+    viewPicOpened()
+}
+
+
+viewPicBtnClose.addEventListener('click', viewPicOpened)
+
+placePhoto.forEach(item => item.addEventListener('click', viewPicture))
