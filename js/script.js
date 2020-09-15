@@ -154,10 +154,11 @@ closeNewPlace.addEventListener('click', function () { //Обработчик з�
     popupOpened(popupNewPlace)
 })
 
-initialCards.forEach(item => addCard(item.link, item.name)) //Добавления массива карточек на страницу
 
 newPlaceForm.addEventListener('submit', saveCard) //Сохранение нового места
 
 viewPicBtnClose.addEventListener('click', function () { //Просмотр фото места
     popupOpened(viewPic)
 })
+
+initialCards.forEach(item => addCard(item.link, item.name)) //Добавления массива карточек на страницу
