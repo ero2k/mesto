@@ -36,22 +36,6 @@
 
         </main>
 
-        <!-- Шаблон карточки с местами -->
-        <template id="placecard">
-
-            <li class="place">
-                <img src="" class="place__photo" alt="фото">
-                <button type="button" class="place__trash">
-                    <img src="./images/place/place-trash.svg" alt="Удалить">
-                </button>
-                <div class="place__discription">
-                    <h2 class="place__title">
-                    </h2>
-                    <button type="button" class="place__like"></button>
-                </div>
-            </li>
-
-        </template>
 
         <!-- попап редактирование профиля -->
         <section class="popup">
@@ -71,9 +55,9 @@
             <form action="#" name="add-newplace" class="new-place__container">
                 <h2 class="new-place__title">Новое место</h2>
                 <input type="text" class="new-place__input new-place__input_js_title" name="title"
-                    placeholder="Название">
-                <input type="text" class="new-place__input new-place__input_js_url" name="url"
-                    placeholder="Ссылка на картинку">
+                    placeholder="Название" required>
+                <input type="url" class="new-place__input new-place__input_js_url" name="url"
+                    placeholder="Ссылка на картинку" required>
 
                 <button type="submit" class="new-place__button-save">Создать</button>
                 <button type="button" class="new-place__button-close">
@@ -95,6 +79,24 @@
                 </button>
             </div>
         </section>
+
+
+        <!-- Шаблон карточки с местами -->
+        <template id="placecard">
+
+            <li class="place">
+                <img src="" class="place__photo" alt="фото">
+                <button type="button" class="place__trash">
+                    <img src="./images/place/place-trash.svg" alt="Удалить">
+                </button>
+                <div class="place__discription">
+                    <h2 class="place__title">
+                    </h2>
+                    <button type="button" class="place__like"></button>
+                </div>
+            </li>
+
+        </template>
 
         <!-- футер -->
         <footer class="footer max-width">
