@@ -161,7 +161,3 @@ newPlaceForm.addEventListener('submit', saveCard) //Сохранение нов�
 viewPicBtnClose.addEventListener('click', function () { //Просмотр фото места
     popupOpened(viewPic)
 })
-
-
-
-// places.prepend(addPlace())
