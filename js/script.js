@@ -1,5 +1,4 @@
 const popup = document.querySelector('.popup');
-
 const popupContainer = popup.querySelector('.popup__container');
 const inputName = popupContainer.querySelector('.popup__input_js_name');
 const inputProfession = popupContainer.querySelector('.popup__input_js_profession');
@@ -7,55 +6,25 @@ const buttonSave = popupContainer.querySelector('.popup__button-save');
 const buttonPopupClose = popupContainer.querySelector('.popup__button-close');
 
 const editProfileButton = document.querySelector('.profile__edit');
-
 const profileName = document.querySelector('.profile__title');
 const profileProffesional = document.querySelector('.profile__subtitle');
+const placeAddButton = document.querySelector('.profile__button-add')
 
 const places = document.querySelector('.places');
+
 const place = document.querySelector('.place');
+const buttonTrash = document.querySelectorAll('.place__trash')
+const buttonLike = document.querySelectorAll('.place__like')
+const placePhoto = places.querySelectorAll('.place__photo')
 
-
-
-function editProfile() {
-    event.preventDefault();
-    popup.classList.toggle('popup_is-opened');
-
-    if (popup.classList.contains('popup_is-opened')) {
-        inputName.value = profileName.textContent;
-        inputProfession.value = profileProffesional.textContent;
-    }
-}
-
-function saveProfile() {
-    event.preventDefault();
-    profileName.textContent = inputName.value;
-    profileProffesional.textContent = inputProfession.value;
-
-    editProfile();
-}
-
-function closePopupByClickOverlay() {
-    if (event.target === event.currentTarget) {
-        editProfile();
-    }
-}
-
-
-buttonPopupClose.addEventListener('click', editProfile);
-
-popup.addEventListener('click', closePopupByClickOverlay);
-
-editProfileButton.addEventListener('click', editProfile);
-
-popupContainer.addEventListener('submit', saveProfile);
-
-
-// Добавление карточек на страницу
-const placeAddButton = document.querySelector('.profile__button-add')
 const popupNewPlace = document.querySelector('.new-place')
 const closeNewPlace = popupNewPlace.querySelector('.new-place__button-close')
 const buttonSaveCard = popupNewPlace.querySelector('.new-place__button-save')
 const newPlaceForm = popupNewPlace.querySelector('.new-place__container')
+
+const viewPic = document.querySelector('.view-pic')
+const viewPicBtnClose = viewPic.querySelector('.view-pic__button-close')
+
 
 const initialCards = [{
         name: 'Архыз',
@@ -83,72 +52,47 @@ const initialCards = [{
     }
 ];
 
-function openFormAddCard() {
-    popupNewPlace.classList.toggle('new-place_is-opened')
-}
 
-placeAddButton.addEventListener('click', openFormAddCard)
-closeNewPlace.addEventListener('click', openFormAddCard)
-
-
-function addPlace(img, title) {
-
-    const placeTemplate = document.querySelector('#placecard').content;
-    const placeElement = placeTemplate.cloneNode(true);
-
-    placeElement.querySelector('.place__photo').src = img;
-    placeElement.querySelector('.place__title').textContent = title;
-
-    places.prepend(placeElement);
-}
-
-
-initialCards.forEach(item => addPlace(item.link, item.name))
-
-
-function saveCard() {
-    event.preventDefault();
-
-    const title = popupNewPlace.querySelector('.new-place__input_js_title').value
-    const link = popupNewPlace.querySelector('.new-place__input_js_url').value
-
-    addPlace(link, title)
-
-    openFormAddCard()
-}
-
-newPlaceForm.addEventListener('submit', saveCard)
-
-
-// Like place
-const buttonLike = document.querySelectorAll('.place__like')
 
 function placeLikeSelected() {
     this.classList.toggle('place__like_selected')
 }
 
-buttonLike.forEach(item => item.addEventListener('click', placeLikeSelected))
-
-
-// Deleted place
-const buttonTrash = document.querySelectorAll('.place__trash')
-
 function placeDeleted() {
     this.parentNode.remove()
 }
 
-buttonTrash.forEach(item => item.addEventListener('click', placeDeleted))
-
-// view image
-
-const placePhoto = places.querySelectorAll('.place__photo')
-const viewPic = document.querySelector('.view-pic')
-const viewPicBtnClose = viewPic.querySelector('.view-pic__button-close')
-
-function viewPicOpened() {
-    viewPic.classList.toggle('view-pic_is-opened')
+function popupOpened(popup) {
+    popup.classList.toggle('popup-opened');
 }
 
+function editProfile() {
+    popupOpened(popup)
+
+    if (popup.classList.contains('popup-opened')) {
+        inputName.value = profileName.textContent;
+        inputProfession.value = profileProffesional.textContent;
+    }
+}
+
+//функция сохранения профиля
+function saveProfile() {
+
+    event.preventDefault();
+    profileName.textContent = inputName.value;
+    profileProffesional.textContent = inputProfession.value;
+
+    popupOpened(popup)
+}
+
+//функция закрытия по темной области попапа
+function closePopupByClickOverlay(event) {
+    if (event.target === event.currentTarget) {
+        popupOpened(popup)
+    }
+}
+
+//Функция просмотра фото
 function viewPicture() {
     const photo = this.src
     const title = this.parentNode.querySelector('.place__title').textContent
@@ -156,10 +100,68 @@ function viewPicture() {
     viewPic.querySelector('.view-pic__img').src = photo
     viewPic.querySelector('.view-pic__caption').textContent = title
 
-    viewPicOpened()
+    popupOpened(viewPic)
 }
 
+// Добавление карточек на страницу
+function addPlace(img, title) {
 
-viewPicBtnClose.addEventListener('click', viewPicOpened)
+    const placeTemplate = document.querySelector('#placecard').content;
+    const placeElement = placeTemplate.cloneNode(true);
+    const placePhoto = placeElement.querySelector('.place__photo')
 
-placePhoto.forEach(item => item.addEventListener('click', viewPicture))
+    placePhoto.src = img;
+    placePhoto.addEventListener('click', viewPicture)
+    placeElement.querySelector('.place__title').textContent = title;
+    placeElement.querySelector('.place__trash').addEventListener('click', placeDeleted)
+    placeElement.querySelector('.place__like').addEventListener('click', placeLikeSelected)
+
+    return placeElement
+}
+
+function addCard(link, name) {
+    places.prepend(addPlace(link, name))
+}
+
+// Сохранение новой карточки
+function saveCard() {
+    event.preventDefault();
+
+    const title = popupNewPlace.querySelector('.new-place__input_js_title').value
+    const link = popupNewPlace.querySelector('.new-place__input_js_url').value
+
+    addCard(link, title)
+
+    popupOpened(popupNewPlace)
+}
+
+buttonPopupClose.addEventListener('click', function () {
+    popupOpened(popup)
+}); //Обработчик закрытия редактирование профиля
+
+popup.addEventListener('click', closePopupByClickOverlay); //Обработчик закрытия редактирование профиля по темной области оверлэя
+
+editProfileButton.addEventListener('click', editProfile); //Обработчик открытия редактирование профиля
+
+popupContainer.addEventListener('submit', saveProfile); //Обработчик сохранения профиля
+
+
+placeAddButton.addEventListener('click', function () { //Обработчик открытия добавления нового места
+    popupOpened(popupNewPlace)
+})
+
+closeNewPlace.addEventListener('click', function () { //Обработчик закрытия добавления нового места
+    popupOpened(popupNewPlace)
+})
+
+initialCards.forEach(item => addCard(item.link, item.name)) //Добавления массива карточек на страницу
+
+newPlaceForm.addEventListener('submit', saveCard) //Сохранение нового места
+
+viewPicBtnClose.addEventListener('click', function () { //Просмотр фото места
+    popupOpened(viewPic)
+})
+
+
+
+// places.prepend(addPlace())
