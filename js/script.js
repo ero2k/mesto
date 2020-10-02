@@ -26,6 +26,8 @@ const viewPic = document.querySelector('.view-pic')
 const viewPicBtnClose = viewPic.querySelector('.view-pic__button-close')
 
 
+
+
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -62,17 +64,45 @@ function placeDeleted() {
     this.parentNode.remove()
 }
 
-function popupOpened(popup) {
-    popup.classList.toggle('popup-opened');
+function closePopupBtnEsc(popup) {
+    document.addEventListener('keydown', function (evt) {
+        if (evt.key === 'Escape') {
+            popupOpened(popup)
+        }
+    })
 }
 
-function editProfile() {
-    popupOpened(popup)
+function popupOpened(popup) {
+    popup.classList.toggle('popup-opened');
+    const popupId = popup.id
+    const inputList = document.querySelectorAll(`.${popupId}__input`)
+    const buttonSubmit = document.querySelector(`.${popupId}__button-save`)
+    const inputError = document.querySelectorAll(`.${popupId}__error`)
 
+
+    if (popup.classList.contains('popup-opened') && popupId === 'popup') {
+        inputName.value = profileName.textContent;
+        inputProfession.value = profileProffesional.textContent;
+    } else {
+        document.querySelector(`.${popupId}__container`).reset()
+        buttonSubmit.classList.remove('button-disabled')
+        inputError.forEach(input => input.classList.remove(`${popupId}__error_visible`))
+        inputList.forEach(span => span.classList.remove(`${popupId}__input_type_error`))
+    }
+
+    closePopupBtnEsc(popup)
+}
+
+
+function editProfile() {
     if (popup.classList.contains('popup-opened')) {
         inputName.value = profileName.textContent;
         inputProfession.value = profileProffesional.textContent;
+    } else {
+        inputName.value = '';
+        inputProfession.value = '';
     }
+    popupOpened(popup)
 }
 
 //функция сохранения профиля
@@ -88,7 +118,7 @@ function saveProfile() {
 //функция закрытия по темной области попапа
 function closePopupByClickOverlay(event) {
     if (event.target === event.currentTarget) {
-        popupOpened(popup)
+        popupOpened(event.target)
     }
 }
 
@@ -133,13 +163,17 @@ function saveCard() {
     addCard(link, title)
 
     popupOpened(popupNewPlace)
+
 }
+
 
 buttonPopupClose.addEventListener('click', function () {
     popupOpened(popup)
 }); //Обработчик закрытия редактирование профиля
 
 popup.addEventListener('click', closePopupByClickOverlay); //Обработчик закрытия редактирование профиля по темной области оверлэя
+
+popupNewPlace.addEventListener('click', closePopupByClickOverlay);
 
 editProfileButton.addEventListener('click', editProfile); //Обработчик открытия редактирование профиля
 

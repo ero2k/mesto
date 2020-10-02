@@ -21,10 +21,10 @@
                 <img src="./images/profile/avatar.jpg" alt="Фото профиля" class="profile__avatar">
                 <div class="profile__info">
                     <h1 class="profile__title alignment">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit alignment"></button>
+                    <button type="button" class="profile__edit alignment open-popup-btn-js"></button>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
-                <button type="button" class="profile__button-add">
+                <button type="button" class="profile__button-add open-popup-btn-js">
                 </button>
             </section>
 
@@ -38,27 +38,47 @@
 
 
         <!-- попап редактирование профиля -->
-        <section class="popup">
+        <section class="popup" id='popup'>
             <form action="#" name="edit-profile" class="popup__container">
+
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__input popup__input_js_name" name="name">
-                <input type="text" class="popup__input popup__input_js_profession" name="profession">
+
+                <label class="popup__field">
+                    <input type="text" class="popup__input popup__input_js_name" id="name-input" name="name" required
+                        minlength="2" maxlength="40">
+                    <span class="popup__error" id="name-input-error"></span>
+                </label>
+
+                <label class="popup__field">
+                    <input type="text" class="popup__input popup__input_js_profession" id="about-input"
+                        name="profession" required minlength="2" maxlength="200">
+
+                    <span class="popup__error" id="about-input-error"></span>
+                </label>
+
                 <button type="submit" class="popup__button-save">Сохранить</button>
                 <button type="button" class="popup__button-close">
                     <img src="./images/popup/close-icon.svg" class="popup__close-image" alt="Закрыть">
                 </button>
+
             </form>
         </section>
 
+
         <!-- попап добавление карточки -->
-        <section class="new-place">
+        <section class="new-place" id="new-place">
             <form action="#" name="add-newplace" class="new-place__container">
                 <h2 class="new-place__title">Новое место</h2>
-                <input type="text" class="new-place__input new-place__input_js_title" name="title"
-                    placeholder="Название" required>
-                <input type="url" class="new-place__input new-place__input_js_url" name="url"
-                    placeholder="Ссылка на картинку" required>
-
+                <label class="new-place__field">
+                    <input type="text" class="new-place__input new-place__input_js_title" name="title" id="title-input"
+                        placeholder="Название" required minlength="2" maxlength="40">
+                    <span class="new-place__error" id="title-input-error"></span>
+                </label>
+                <label class="new-place__field">
+                    <input type="url" class="new-place__input new-place__input_js_url" id="url-input" name="url"
+                        placeholder="Ссылка на картинку" required>
+                    <span class="new-place__error" id="url-input-error"></span>
+                </label>
                 <button type="submit" class="new-place__button-save">Создать</button>
                 <button type="button" class="new-place__button-close">
                     <img src="./images/popup/close-icon.svg" class="new-place__close-image" alt="Закрыть">
@@ -105,6 +125,7 @@
 
     </div>
     <script src="./js/script.js"></script>
+    <script src="./js/validate.js"></script>
 </body>
 
 </html>
