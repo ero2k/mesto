@@ -1,0 +1,13 @@
+.profile__info {
+    color: white;
+    display: grid;
+    column-gap: 24px;
+    grid-template-columns: max-content 30px auto;
+}
+
+@media all and (max-width: 770px) {
+    .profile__info {
+        margin-bottom: 36px;
+        column-gap: 1px;
+    }
+}

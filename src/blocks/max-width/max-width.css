@@ -1,0 +1,10 @@
+.max-width {
+    max-width: 882px;
+    margin: 0 auto;
+}
+
+@media all and (max-width: 920px) {
+    .max-width {
+        max-width: calc(100vw - 38px);
+    }
+}

@@ -1,0 +1,4 @@
+.item-hover:hover {
+    opacity: .6;
+    cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.place__discription {
+    background-color: white;
+    margin: 0;
+    padding: 0 15px 0 21px;
+    border-radius: 0 0 10px 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 282px;
+}

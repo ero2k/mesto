@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+</head>
+
+<body class="body">
+    <div class="page">
+        <header class="header header__border_bottom max-width">
+            <a href="#"><img src="<%=require('./images/logo/logo.svg')%>" alt="Логотип" class="logo"></a>
+        </header>
+
+        <main class="content max-width">
+
+            <!-- профиль -->
+            <section class="profile">
+                <img src="<%=require('./images/profile/avatar.jpg')%>" alt="Фото профиля" class="profile__avatar">
+                <div class="profile__info">
+                    <h1 class="profile__title alignment">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit alignment edit-profile-btn"></button>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+                <button type="button" class="profile__button-add new-place-btn">
+                </button>
+            </section>
+
+            <!-- секция с карточками -->
+            <section>
+                <ul class="places">
+                </ul>
+            </section>
+
+        </main>
+
+
+        <!-- попап редактирование профиля -->
+        <section class="popup  popup_type_edit-profile  form-js" id='edit-profile'>
+            <form action="#" name="edit-profile" class="popup__container">
+
+                <h2 class="popup__title">Редактировать профиль</h2>
+
+                <label class="popup__field">
+                    <input type="text" class="popup__input popup__input_js_name" id="name-input" name="name" required
+                        minlength="2" maxlength="40">
+                    <span class="popup__error" id="name-input-error"></span>
+                </label>
+
+                <label class="popup__field">
+                    <input type="text" class="popup__input popup__input_js_profession" id="about-input"
+                        name="profession" required minlength="2" maxlength="200">
+
+                    <span class="popup__error" id="about-input-error"></span>
+                </label>
+
+                <button type="submit" class="popup__button-save">Сохранить</button>
+                <button type="button" class="popup__button-close">
+                    <img src="<%=require('./images/popup/close-icon.svg')%>" class="popup__close-image" alt="Закрыть">
+                </button>
+
+            </form>
+        </section>
+
+
+        <!-- попап добавление карточки -->
+        <section class="popup popup_type_new-place form-js" id="new-place">
+            <form action="#" name="add-newplace" class="popup__container">
+                <h2 class="popup__title">Новое место</h2>
+                <label class="popup__field">
+                    <input type="text" class="popup__input popup__input_js_title" name="name" id="title-input"
+                        placeholder="Название" required minlength="2" maxlength="40">
+                    <span class="popup__error" id="title-input-error"></span>
+                </label>
+                <label class="popup__field">
+                    <input type="url" class="popup__input popup__input_js_url" id="url-input" name="link"
+                        placeholder="Ссылка на картинку" required>
+                    <span class="popup__error" id="url-input-error"></span>
+                </label>
+                <button type="submit" class="popup__button-save">Создать</button>
+                <button type="button" class="popup__button-close">
+                    <img src="<%=require('./images/popup/close-icon.svg')%>" class="popup__close-image" alt="Закрыть">
+                </button>
+            </form>
+        </section>
+
+        <!-- просмотр фотографий -->
+        <section class="popup popup_type_view-pic" id="view-pic">
+            <div class="popup__container popup__container_type_view_pic">
+                <figure class="popup__figure">
+                    <img src="#" alt="" class="popup__img">
+                    <figcaption class="popup__caption">
+                    </figcaption>
+                </figure>
+                <button type="button" class="popup__button-close">
+                    <img src="<%=require('./images/popup/close-icon.svg')%>" class="popup__close-image" alt="Закрыть">
+                </button>
+            </div>
+        </section>
+
+
+        <!-- Шаблон карточки с местами -->
+        <template id="placecard">
+
+            <li class="place">
+                <img src="" class="place__photo" alt="фото">
+                <button type="button" class="place__trash">
+                    <img src="<%=require('./images/place/place-trash.svg')%>" alt="Удалить">
+                </button>
+                <div class="place__discription">
+                    <h2 class="place__title">
+                    </h2>
+                    <button type="button" class="place__like"></button>
+                </div>
+            </li>
+
+        </template>
+
+        <!-- футер -->
+        <footer class="footer max-width">
+            <p class="footer__author">&#169; 2020 Mesto Russia</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

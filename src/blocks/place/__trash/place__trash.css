@@ -1,0 +1,17 @@
+.place__trash {
+    background-image: url(../../../images/place/place-trash.svg);
+    position: absolute;
+    min-height: 19px;
+    min-width: 18px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    top: 18px;
+    right: 15px;
+}
+
+.place__trash:hover {
+    opacity: .6;
+    cursor: pointer;
+}
