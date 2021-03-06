@@ -20,10 +20,12 @@ class Card {
         const placeTitle = placeElement.querySelector('.place__title')
 
         placePhoto.src = this._link;
+        placePhoto.alt = `Изображение "${this._name}"`; 
         placeTitle.textContent = this._name
 
         placeElement.querySelector('.place__title').textContent = this._name;
         placePhoto.addEventListener('click', this._viewPicture)
+
 
         placeElement.querySelector('.place__trash').addEventListener('click', this._deletePlace)
         placeElement.querySelector('.place__like').addEventListener('click', this._addFavoritePlace)

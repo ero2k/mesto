@@ -50,14 +50,9 @@ class FormValidator {
 
 
     _resetError = () => {
-
-        if (this._formElement.classList.contains('form-js')) {
-            this._inputList.forEach(span => {
-                this._hideInputError(span)
-            })
-            if (!this._formElement.classList.contains('popup_type_edit-profile'))
-               { this._formElement.children[0].reset() }
-        }
+        this._inputList.forEach(span => {
+            this._hideInputError(span)
+        })
     }
 
     _setEventListeners() {

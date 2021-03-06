@@ -1,16 +1,10 @@
-import Card from './js/Card.js';
-import FormValidator from './js/FormValidator.js';
-import PopupWithForm from './js/PopupWithForm.js';
-import PopupWithImage from './js/PopupWithImage.js';
-import Section from './js/Section.js';
-import UserInfo from './js/UserInfo.js';
-import './pages/index.css';
-// import logo from '../images/logo/logo.svg';
-// import placeheart_fill from '../images/place/place-heart_fill.svg';
-// import placeheart from '../images/place/place-heart.svg';
-// import placetrash from '../images/place/place-trash.svg';
-
-
+import Card from '../js/Card.js';
+import FormValidator from '../js/FormValidator.js';
+import PopupWithForm from '../js/PopupWithForm.js';
+import PopupWithImage from '../js/PopupWithImage.js';
+import Section from '../js/Section.js';
+import UserInfo from '../js/UserInfo.js';
+import './index.css';
 
 import {
     inputName,
@@ -21,19 +15,23 @@ import {
     formList,
     placeTemplate,
     initialCards,
-} from './utils/constants.js'
+} from '../utils/constants.js'
+
+
+function createCard(item){
+    const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
+    const cardElement = card.generateCard();
+    return cardElement
+}
 
 const viewPlacePopup = new PopupWithImage('.popup_type_view-pic')
 viewPlacePopup.setEventListeners()
 ////////////
 
 const newPlacePopup = new PopupWithForm('.popup_type_new-place',
-    item => {
-        const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
-        const cardElement = card.generateCard();
+item => {defaultCardList.setItem(createCard(item));
+}
 
-        defaultCardList.setItem(cardElement);
-    }
 )
 newPlacePopup.setEventListeners()
 ////////////
@@ -65,10 +63,7 @@ placeAddButton.addEventListener('click', function () { //Обработчик о
 const defaultCardList = new Section({
     items: initialCards,
     renderer: item => {
-        const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
-        const cardElement = card.generateCard();
-
-        defaultCardList.setItem(cardElement);
+        defaultCardList.setItem(createCard(item));
     }
 }, sectionPlaces);
 

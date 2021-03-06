@@ -3,13 +3,13 @@ export default class UserInfo {
         nameSelector,
         descriptionSelector
     ) {
-        this._nameSelector = document.querySelector(nameSelector);
-        this._descriptionSelector = document.querySelector(descriptionSelector);
+        this._name = document.querySelector(nameSelector);
+        this._description = document.querySelector(descriptionSelector);
     }
 
     getUserInfo() {
-        const name = this._nameSelector.textContent
-        const proffesion = this._descriptionSelector.textContent
+        const name = this._name.textContent
+        const proffesion = this._description.textContent
 
         const data = {
             name,
@@ -20,7 +20,7 @@ export default class UserInfo {
     }
 
     setUserInfo = (data) => {
-        this._nameSelector.textContent = data.name;
-        this._descriptionSelector.textContent = data.profession
+        this._name.textContent = data.name;
+        this._description.textContent = data.profession
     }
 }
