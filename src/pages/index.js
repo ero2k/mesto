@@ -1,4 +1,5 @@
 import Card from '../js/Card.js';
+import Api from '../js/Api.js'
 import FormValidator from '../js/FormValidator.js';
 import PopupWithForm from '../js/PopupWithForm.js';
 import PopupWithImage from '../js/PopupWithImage.js';
@@ -17,6 +18,14 @@ import {
     initialCards,
 } from '../utils/constants.js'
 
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+    headers: {
+      authorization: '5c6140f1-9e52-4c97-825d-a5a141b1908b'
+    }
+  }); 
+
+  api.getInitialCards()
 
 function createCard(item){
     const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
