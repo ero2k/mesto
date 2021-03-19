@@ -9,11 +9,12 @@ export default class Section {
         this._container.prepend(element);
       }
 
-    renderItems(fun) {
-      fun.then(res => res.json()).then(data => console.log(data))
-      // fun.forEach(item => {
-      //   console.log(item)
-      //     // this._renderer(item);
-      //   });
+    renderItems() {
+      this._renderedItems.then(data => {
+        data.forEach(item => {
+          // console.log(item)
+            this._renderer(item);
+          });
+      })
       }
 }

@@ -21,14 +21,14 @@ import {
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
     headers: {
-      authorization: '5c6140f1-9e52-4c97-825d-a5a141b1908b'
+        authorization: '5c6140f1-9e52-4c97-825d-a5a141b1908b'
     }
-  }); 
+});
 
-//  const data = api.getInitialCards()
-//  console.log(data.then())
+ const data = api.saveProfile()
+ console.log(data)
 
-function createCard(item){
+function createCard(item) {
     const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
     const cardElement = card.generateCard();
     return cardElement
@@ -39,8 +39,9 @@ viewPlacePopup.setEventListeners()
 ////////////
 
 const newPlacePopup = new PopupWithForm('.popup_type_new-place',
-item => {defaultCardList.setItem(createCard(item));
-}
+    item => {
+        defaultCardList.setItem(createCard(item));
+    }
 
 )
 newPlacePopup.setEventListeners()
@@ -78,14 +79,14 @@ placeAddButton.addEventListener('click', function () { //Обработчик о
 // }, sectionPlaces);
 
 const defaultCardList = new Section({
-    items:api.getInitialCards() ,
+    items: api.getInitialCards(),
     renderer: item => {
         defaultCardList.setItem(createCard(item));
     }
 }, sectionPlaces);
 
 // console.log(api.getInitialCards())
-defaultCardList.renderItems(api.getInitialCards());
+defaultCardList.renderItems();
 
 //Добавление проверки форм
 formList.forEach((formElement) => {
