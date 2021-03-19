@@ -25,7 +25,8 @@ const api = new Api({
     }
   }); 
 
-  api.getInitialCards()
+//  const data = api.getInitialCards()
+//  console.log(data.then())
 
 function createCard(item){
     const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
@@ -69,14 +70,22 @@ placeAddButton.addEventListener('click', function () { //Обработчик о
 })
 
 //Добавление карточек из имеющейся коллекции 
+// const defaultCardList = new Section({
+//     items: initialCards,
+//     renderer: item => {
+//         defaultCardList.setItem(createCard(item));
+//     }
+// }, sectionPlaces);
+
 const defaultCardList = new Section({
-    items: initialCards,
+    items:api.getInitialCards() ,
     renderer: item => {
         defaultCardList.setItem(createCard(item));
     }
 }, sectionPlaces);
 
-defaultCardList.renderItems();
+// console.log(api.getInitialCards())
+defaultCardList.renderItems(api.getInitialCards());
 
 //Добавление проверки форм
 formList.forEach((formElement) => {
