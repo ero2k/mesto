@@ -12,11 +12,20 @@ export default class Section {
     this._container.prepend(element);
   }
 
-  renderItems(fun) {
-    fun.then(res => res.json()).then(data => console.log(data))
-    // fun.forEach(item => {
-    //   console.log(item)
-    //     // this._renderer(item);
-    //   });
+  renderItems(myprofile) {
+
+    myprofile.then(myprofileData => {
+        return myprofileData
+      })
+      .then(myprofileData => this._renderedItems.then(data =>
+        data.forEach(item => {
+          if (myprofileData._id == item.owner._id) {
+            this._renderer(item, true);
+          } else {
+            this._renderer(item, false);
+          }
+        })
+
+      ))
   }
 }

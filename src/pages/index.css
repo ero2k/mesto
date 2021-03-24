@@ -1,3 +1,8 @@
+* {
+    /* border: 1px red solid; */
+    /* outline: 1px solid red; */
+}
+
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 
@@ -31,8 +36,11 @@
 @import url(../blocks/place/__like/_selected/place__like_selected.css);
 @import url(../blocks/place/__trash/place__trash.css);
 @import url(../blocks/place/__discription/place__discription.css);
+@import url(../blocks/place/__like-container/place__like-container.css);
+@import url(../blocks/place/__total-like/place__total-like.css);
 @import url(../blocks/place/__photo/place__photo.css);
 @import url(../blocks/place/__title/place__titile.css);
+
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__alarm/popup__alarm.css);
@@ -43,6 +51,7 @@
 @import url(../blocks/popup/__container/_type/popup__container_type_view-pic.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__tiltle/popup__tiltle.css);
+@import url(../blocks/popup/__tiltle/_confirm/popup__title_confirm.css);
 @import url(../blocks/popup/__field/popup__field.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__error/popup__error.css);
@@ -57,5 +66,6 @@
 @import url(../blocks/footer/__author/footer__author.css);
 
 @import url(../blocks/popup-opened/popup-opened.css);
+@import url(../blocks/trashbtn-hidden/trashbtn-hidden.css);
 
 @import url(../blocks/button-disabled/button-disabled.css);
