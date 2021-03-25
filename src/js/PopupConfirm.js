@@ -3,7 +3,6 @@ import Popup from './Popup.js'
 export default class PopupConfirm extends Popup {
     constructor(popup) {
         super(popup);
-        this.func = 
     }
 
     close() {
