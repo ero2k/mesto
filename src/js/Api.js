@@ -7,23 +7,28 @@ export default class Api {
     this._headers = headers;
   }
 
-  _fetchRequest = (path, method = 'GET', body) => {
+  _fetchRequest = (path, method = 'GET', {
+    ...body
+  }) => {
     return fetch(`${this._url}${path}`, {
       method: `${method}`,
       headers: {
         authorization: `${this._headers.authorization}`,
         'Content-Type': 'application/json'
       },
-      body: method == 'PATCH' ? JSON.stringify({
-        name: 'Marie Skłodowska Curie',
-        about: 'Physicist and Chemist'
+      body: method.indexOf('GET', 'DELETE') ? JSON.stringify({
+        ...body
       }) : null
+      // body: method != 'GET' ? JSON.stringify({
+      //   ...body
+      // }) : null
     }).then(res => {
       if (res.ok) {
-        // console.log(res.json())
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
+    }).catch((err) => {
+      console.log(err); // выведем ошибку в консоль
     });
 
   }
@@ -36,11 +41,21 @@ export default class Api {
     return this._fetchRequest('/users/me')
   }
 
-  saveProfile() {
-    const test = {
-      name: 'Marie Skłodowska Curie',
-      about: 'Physicist and Chemist'
-    }
-    return this._fetchRequest('/users/me', 'PATCH', test)
+  saveProfile = (data, setInfoProfile) => {
+    return this._fetchRequest('/users/me', 'PATCH', data)
+      .then(data => setInfoProfile(data))
+  }
+
+  postCard = (data) => {
+    return this._fetchRequest('/cards', 'POST', data)
+  }
+
+  // like = () => {
+  //   return this._fetchRequest('/cards', 'POST', data)
+  // }
+
+  deleteCard = (idCard) =>  {
+    console.log('delcar')
+    return this._fetchRequest(`/cards/${idCard}`, 'DELETE')
   }
 }

@@ -49,8 +49,8 @@
                 </label>
 
                 <label class="popup__field">
-                    <input type="text" class="popup__input popup__input_js_profession" id="about-input"
-                        name="profession" required minlength="2" maxlength="200">
+                    <input type="text" class="popup__input popup__input_js_profession" id="about-input" name="about"
+                        required minlength="2" maxlength="200">
 
                     <span class="popup__error" id="about-input-error"></span>
                 </label>
@@ -99,6 +99,17 @@
             </div>
         </section>
 
+        <!-- попап подтверждения  -->
+        <section class="popup popup_type_confirm" id="confirm">
+            <form action="#" name="confirm" class="popup__container">
+                <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+                <button type="submit" class="popup__button-save button-confirm">Да</button>
+                <button type="button" class="popup__button-close">
+                    <img src="<%=require('./images/popup/close-icon.svg')%>" class="popup__close-image" alt="Закрыть">
+                </button>
+            </form>
+        </section>
+
 
         <!-- Шаблон карточки с местами -->
         <template id="placecard">
@@ -111,7 +122,10 @@
                 <div class="place__discription">
                     <h2 class="place__title">
                     </h2>
-                    <button type="button" class="place__like"></button>
+                    <div class="place__like-container">
+                        <button type="button" class="place__like"></button>
+                        <span class="place__total-like"></span>
+                    </div>
                 </div>
             </li>
 

@@ -2,6 +2,7 @@ import Card from '../js/Card.js';
 import Api from '../js/Api.js'
 import FormValidator from '../js/FormValidator.js';
 import PopupWithForm from '../js/PopupWithForm.js';
+import PopupConfirm from '../js/PopupConfirm.js';
 import PopupWithImage from '../js/PopupWithImage.js';
 import Section from '../js/Section.js';
 import UserInfo from '../js/UserInfo.js';
@@ -15,7 +16,6 @@ import {
     sectionPlaces,
     formList,
     placeTemplate,
-    initialCards,
 } from '../utils/constants.js'
 
 const api = new Api({
@@ -24,13 +24,34 @@ const api = new Api({
         authorization: '5c6140f1-9e52-4c97-825d-a5a141b1908b'
     }
 });
+///////////
 
- const data = api.saveProfile()
- console.log(data)
+const popupConfirm = new PopupConfirm('.popup_type_confirm', )
+// popupConfirm.setEventListeners()
+///////////
 
-function createCard(item) {
-    const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name));
-    const cardElement = card.generateCard();
+function deleteCard(idCard) {
+    console.log('deleteCard', idCard)
+    popupConfirm.open()
+    popupConfirm.evenListener(idCard,api.deleteCard)
+}
+
+// function deleteCard() {
+
+// }
+
+function setProfile() {
+    usrInfo.setUserInfo(api.getInfoAuthor())
+}
+
+
+const usrInfo = new UserInfo('.profile__title', '.profile__subtitle');
+setProfile()
+////////////
+
+function createCard(item, checkAuthor) {
+    const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name), deleteCard);
+    const cardElement = card.generateCard(checkAuthor);
     return cardElement
 }
 
@@ -40,23 +61,20 @@ viewPlacePopup.setEventListeners()
 
 const newPlacePopup = new PopupWithForm('.popup_type_new-place',
     item => {
+        api.postCard(item)
         defaultCardList.setItem(createCard(item));
     }
-
 )
 newPlacePopup.setEventListeners()
 ////////////
 
-const usrInfo = new UserInfo('.profile__title', '.profile__subtitle');
-////////////
-
-const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', usrInfo.setUserInfo);
+const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', api.saveProfile, setProfile); //usrInfo.setUserInfo
 editProfilePopup.setEventListeners()
 ////////////
 
 function viewUserInfoPopup(data) {
     inputName.value = data.name;
-    inputProfession.value = data.proffesion;
+    inputProfession.value = data.about;
 }
 
 
@@ -70,23 +88,16 @@ placeAddButton.addEventListener('click', function () { //Обработчик о
     newPlacePopup.open();
 })
 
-//Добавление карточек из имеющейся коллекции 
-// const defaultCardList = new Section({
-//     items: initialCards,
-//     renderer: item => {
-//         defaultCardList.setItem(createCard(item));
-//     }
-// }, sectionPlaces);
-
 const defaultCardList = new Section({
-    items: api.getInitialCards(),
-    renderer: item => {
-        defaultCardList.setItem(createCard(item));
-    }
-}, sectionPlaces);
 
-// console.log(api.getInitialCards())
-defaultCardList.renderItems();
+        items: api.getInitialCards(),
+        renderer: (item, myCard) => {
+            defaultCardList.setItem(createCard(item, myCard))
+        }
+    },
+    sectionPlaces);
+
+defaultCardList.renderItems(api.getInfoAuthor());
 
 //Добавление проверки форм
 formList.forEach((formElement) => {
