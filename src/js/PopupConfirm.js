@@ -3,6 +3,7 @@ import Popup from './Popup.js'
 export default class PopupConfirm extends Popup {
     constructor(popup) {
         super(popup);
+        this.func = 
     }
 
     close() {
@@ -14,14 +15,11 @@ export default class PopupConfirm extends Popup {
     open(){
         super.open()
         this._popup.addEventListener('submit', e => e.preventDefault())
-        // console.log('add', this.evenListener)
-        
         this._popup.addEventListener('submit', this.evenListener)
     }
 
     evenListener(idCard, callBackSubmitForm) {
         console.log('evenListener', this)
-
         callBackSubmitForm(idCard)
         this.close()
     }
