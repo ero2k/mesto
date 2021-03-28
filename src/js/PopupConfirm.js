@@ -21,6 +21,7 @@ export default class PopupConfirm extends Popup {
     }
 
 
+
     setEventListeners() {
         super.setEventListeners()
         this._popup.addEventListener('click', this._eventListener)
