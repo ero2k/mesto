@@ -1,28 +1,30 @@
 import Popup from './Popup.js'
 
 export default class PopupConfirm extends Popup {
-    constructor(popup, callBackSubmitForm) {
+    constructor(popup, handlerButtonClick, item) {
         super(popup);
-        console.log(callBackSubmitForm)
-        this._callBackSubmitForm = callBackSubmitForm;
+        this._clickConfirm = handlerButtonClick;
+        this._item = item
     }
 
     close  ()  {
         super.close()
-        console.log('remove', this.evenListener)
-        this._popup.removeEventListener('submit', this.evenListener)
+        this._popup.removeEventListener('click', this._eventListener)
     }
 
-    evenListener = () => {
-            this._callBackSubmitForm()
-            this.close()
-        }
+    _eventListener = () => {
+        this._clickConfirm().then(item => {
+            console.log(item.message)
+            this._item.remove()
+        })
+        this.close()
+    }
 
 
 
     setEventListeners() {
         super.setEventListeners()
-        this._popup.addEventListener('submit', this.evenListener)
+        this._popup.addEventListener('click', this._eventListener)
     }
 
 }

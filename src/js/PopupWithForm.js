@@ -1,19 +1,26 @@
 import Popup from './Popup.js'
 
 export default class PopupWithForm extends Popup {
-    constructor(popup, callBackSubmitForm, setInfoProfile) {
+    constructor(popup, {
+        callBackSubmit
+    }) {
         super(popup);
-        this._setInfoProfile = setInfoProfile;
-        this._callBackSubmitForm = callBackSubmitForm;
+        this._callBackSubmitForm = callBackSubmit;
         this._inputs = this._popup.querySelectorAll('.popup__input')
+        this._button = this._popup.querySelector('.popup__button-save')
     }
 
     setEventListeners = () => {
         super.setEventListeners()
+        const btnLabel = this._button.textContent
         this._popup.addEventListener('submit',
             () => {
-                this._callBackSubmitForm(this._getInputValues(), this._setInfoProfile)
-                this.close()
+                this._callBackSubmitForm(this._getInputValues()).then(item => {
+                    console.log('Done')
+                    this._button.textContent = btnLabel
+                    this.close()
+                })
+                this._button.textContent = 'Сохранение...'
             }
         )
     }

@@ -56,7 +56,6 @@ class FormValidator {
     }
 
     _setEventListeners() {
-
         document.querySelector(`.${this._formElement.id}-btn`)
             .addEventListener('click', () => {
                 this._resetError()

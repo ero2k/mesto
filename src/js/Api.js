@@ -19,9 +19,6 @@ export default class Api {
       body: method.indexOf('GET', 'DELETE') ? JSON.stringify({
         ...body
       }) : null
-      // body: method != 'GET' ? JSON.stringify({
-      //   ...body
-      // }) : null
     }).then(res => {
       if (res.ok) {
         return res.json();
@@ -41,21 +38,24 @@ export default class Api {
     return this._fetchRequest('/users/me')
   }
 
-  saveProfile = (data, setInfoProfile) => {
+  saveProfile = (data) => {
     return this._fetchRequest('/users/me', 'PATCH', data)
-      .then(data => setInfoProfile(data))
   }
 
   postCard = (data) => {
     return this._fetchRequest('/cards', 'POST', data)
   }
 
-  like = (idCard) => {
-    return this._fetchRequest(`/cards/likes/${idCard}`, 'PUT')
+  like = (idCard, isLiked) => {
+    const method = isLiked ? 'DELETE' : 'PUT'
+    return this._fetchRequest(`/cards/likes/${idCard}`, `${method}`)
   }
 
-  deleteCard = (idCard) =>  {
-    console.log('delcar')
+  deleteCard = (idCard) => {
     return this._fetchRequest(`/cards/${idCard}`, 'DELETE')
+  }
+
+  updateAvatar = (data) => {
+    return this._fetchRequest(`/users/me/avatar`, 'PATCH', data)
   }
 }

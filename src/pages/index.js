@@ -16,6 +16,7 @@ import {
     sectionPlaces,
     formList,
     placeTemplate,
+    avatar
 } from '../utils/constants.js'
 
 const api = new Api({
@@ -28,25 +29,20 @@ const api = new Api({
 
 ///////////
 
-function deleteCard(idCard) {
-    const popupConfirm = new PopupConfirm('.popup_type_confirm', () => api.deleteCard(idCard) )
-    console.log('deleteCard', idCard)
+function deleteCard(idCard, item) {
+    const popupConfirm = new PopupConfirm('.popup_type_confirm', () => api.deleteCard(idCard), item)
     popupConfirm.open()
     popupConfirm.setEventListeners()
 }
 
-function setProfile() {
-    usrInfo.setUserInfo(api.getInfoAuthor())
-}
 
-
-const usrInfo = new UserInfo('.profile__title', '.profile__subtitle');
-setProfile()
+const usrInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
+usrInfo.setUserInfo(api.getInfoAuthor())
 ////////////
 
-function createCard(item, checkAuthor) {
-    const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name), deleteCard);
-    const cardElement = card.generateCard(checkAuthor);
+function createCard(item, currentUser) {
+    const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name), deleteCard, api.like, currentUser);
+    const cardElement = card.generateCard();
     return cardElement
 }
 
@@ -54,17 +50,40 @@ const viewPlacePopup = new PopupWithImage('.popup_type_view-pic')
 viewPlacePopup.setEventListeners()
 ////////////
 
-const newPlacePopup = new PopupWithForm('.popup_type_new-place',
-    item => {
-        api.postCard(item)
-        .then(item => api.getInfoAuthor().then(({_id}) => defaultCardList.setItem(createCard(item,item.owner._id === _id))) )
-        
+
+
+const newPlacePopup = new PopupWithForm('.popup_type_new-place', {
+    callBackSubmit: item => {
+        return api.postCard(item).then(item =>
+            api.getInfoAuthor().then(({
+                _id
+            }) => defaultCardList.setItem(createCard(item, _id)))
+        )
     }
-)
+})
+
 newPlacePopup.setEventListeners()
 ////////////
 
-const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', api.saveProfile, setProfile); //usrInfo.setUserInfo
+
+const updateAvatarPopup = new PopupWithForm('.popup_type_update-avatar', {
+    callBackSubmit: item => {
+        return api.updateAvatar(item).then(({
+            avatar
+        }) => document.querySelector('.profile__avatar').src = avatar)
+    }
+})
+
+updateAvatarPopup.setEventListeners()
+
+avatar.addEventListener('click', () => updateAvatarPopup.open())
+
+////////////////
+const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', {
+    callBackSubmit: item => {
+        return api.saveProfile(item).then(usrInfo.setUserInfo(api.getInfoAuthor().then()))
+    }
+});
 editProfilePopup.setEventListeners()
 ////////////
 
@@ -87,13 +106,15 @@ placeAddButton.addEventListener('click', function () { //Обработчик о
 const defaultCardList = new Section({
 
         items: api.getInitialCards(),
-        renderer: (item, myCard) => {
-            defaultCardList.setItem(createCard(item, myCard))
+        renderer: (item, idCurrentUser) => {
+            return defaultCardList.setItem(createCard(item, idCurrentUser))
         }
     },
     sectionPlaces);
 
-defaultCardList.renderItems(api.getInfoAuthor());
+api.getInfoAuthor().then(({
+    _id
+}) => defaultCardList.renderItems(_id));
 
 //Добавление проверки форм
 formList.forEach((formElement) => {
