@@ -126,9 +126,6 @@ Promise.all([api.getInfoAuthor(), api.getInitialCards()]).then(values => {
 
     defaultCardList.renderItems(userID)
 
-    // api.getInfoAuthor().then(({
-    //     _id
-    // }) => defaultCardList.renderItems(_id));
 
     //Добавление проверки форм
     formList.forEach((formElement) => {
