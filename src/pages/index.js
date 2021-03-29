@@ -26,19 +26,14 @@ const api = new Api({
 });
 ///////////
 
-const popupConfirm = new PopupConfirm('.popup_type_confirm', )
-// popupConfirm.setEventListeners()
 ///////////
 
 function deleteCard(idCard) {
+    const popupConfirm = new PopupConfirm('.popup_type_confirm', () => api.deleteCard(idCard) )
     console.log('deleteCard', idCard)
     popupConfirm.open()
-    popupConfirm.evenListener(idCard,api.deleteCard)
+    popupConfirm.setEventListeners()
 }
-
-// function deleteCard() {
-
-// }
 
 function setProfile() {
     usrInfo.setUserInfo(api.getInfoAuthor())
@@ -62,7 +57,8 @@ viewPlacePopup.setEventListeners()
 const newPlacePopup = new PopupWithForm('.popup_type_new-place',
     item => {
         api.postCard(item)
-        defaultCardList.setItem(createCard(item));
+        .then(item => api.getInfoAuthor().then(({_id}) => defaultCardList.setItem(createCard(item,item.owner._id === _id))) )
+        
     }
 )
 newPlacePopup.setEventListeners()

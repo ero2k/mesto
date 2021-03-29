@@ -50,9 +50,9 @@ export default class Api {
     return this._fetchRequest('/cards', 'POST', data)
   }
 
-  // like = () => {
-  //   return this._fetchRequest('/cards', 'POST', data)
-  // }
+  like = (idCard) => {
+    return this._fetchRequest(`/cards/likes/${idCard}`, 'PUT')
+  }
 
   deleteCard = (idCard) =>  {
     console.log('delcar')

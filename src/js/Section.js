@@ -14,9 +14,7 @@ export default class Section {
 
   renderItems(myprofile) {
 
-    myprofile.then(myprofileData => {
-        return myprofileData
-      })
+    myprofile.then()
       .then(myprofileData => this._renderedItems.then(data =>
         data.forEach(item => {
           if (myprofileData._id == item.owner._id) {
