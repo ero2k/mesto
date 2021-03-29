@@ -36,7 +36,9 @@ class Card {
             btnLike.addEventListener('click', this._checkLike(item.likes), {
                 once: true
             })
-        })
+        }).catch((err) => {
+            console.log(err); // выведем ошибку в консоль
+          })
 
     }
 

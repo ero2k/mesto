@@ -19,7 +19,9 @@ export default class PopupWithForm extends Popup {
                     console.log('Done')
                     this._button.textContent = btnLabel
                     this.close()
-                })
+                }).catch((err) => {
+                    console.log(err); // выведем ошибку в консоль
+                  })
                 this._button.textContent = 'Сохранение...'
             }
         )

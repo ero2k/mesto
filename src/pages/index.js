@@ -25,107 +25,124 @@ const api = new Api({
         authorization: '5c6140f1-9e52-4c97-825d-a5a141b1908b'
     }
 });
-///////////
 
-///////////
+Promise.all([api.getInfoAuthor(), api.getInitialCards()]).then(values => {
 
-function deleteCard(idCard, item) {
-    const popupConfirm = new PopupConfirm('.popup_type_confirm', () => api.deleteCard(idCard), item)
-    popupConfirm.open()
-    popupConfirm.setEventListeners()
-}
+    const infoCurrentUser = values[0]
+    const initialCards = values[1]
 
+    const userID = infoCurrentUser._id
+    ///////////
 
-const usrInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
-usrInfo.setUserInfo(api.getInfoAuthor())
-////////////
+    ///////////
 
-function createCard(item, currentUser) {
-    const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name), deleteCard, api.like, currentUser);
-    const cardElement = card.generateCard();
-    return cardElement
-}
-
-const viewPlacePopup = new PopupWithImage('.popup_type_view-pic')
-viewPlacePopup.setEventListeners()
-////////////
-
-
-
-const newPlacePopup = new PopupWithForm('.popup_type_new-place', {
-    callBackSubmit: item => {
-        return api.postCard(item).then(item =>
-            api.getInfoAuthor().then(({
-                _id
-            }) => defaultCardList.setItem(createCard(item, _id)))
-        )
+    function deleteCard(idCard, item) {
+        const popupConfirm = new PopupConfirm('.popup_type_confirm', () => api.deleteCard(idCard).catch((err) => {
+            console.log(err); // выведем ошибку в консоль
+        }), item)
+        popupConfirm.open()
+        popupConfirm.setEventListeners()
     }
-})
-
-newPlacePopup.setEventListeners()
-////////////
 
 
-const updateAvatarPopup = new PopupWithForm('.popup_type_update-avatar', {
-    callBackSubmit: item => {
-        return api.updateAvatar(item).then(({
-            avatar
-        }) => document.querySelector('.profile__avatar').src = avatar)
+    const usrInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
+    usrInfo.setUserInfo(infoCurrentUser)
+    ////////////
+
+    function createCard(item, currentUser) {
+        const card = new Card(item, placeTemplate, () => viewPlacePopup.open(item.link, item.name), deleteCard, api.like, currentUser);
+        const cardElement = card.generateCard();
+        return cardElement
     }
-})
 
-updateAvatarPopup.setEventListeners()
-
-avatar.addEventListener('click', () => updateAvatarPopup.open())
-
-////////////////
-const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', {
-    callBackSubmit: item => {
-        return api.saveProfile(item).then(usrInfo.setUserInfo(api.getInfoAuthor().then()))
-    }
-});
-editProfilePopup.setEventListeners()
-////////////
-
-function viewUserInfoPopup(data) {
-    inputName.value = data.name;
-    inputProfession.value = data.about;
-}
+    const viewPlacePopup = new PopupWithImage('.popup_type_view-pic')
+    viewPlacePopup.setEventListeners()
+    ////////////
 
 
-editProfileButton.addEventListener('click', () => { //Обработчик открытия редактирования профиля
-    viewUserInfoPopup(usrInfo.getUserInfo());
-    editProfilePopup.open()
-})
 
-
-placeAddButton.addEventListener('click', function () { //Обработчик открытия добавления нового места
-    newPlacePopup.open();
-})
-
-const defaultCardList = new Section({
-
-        items: api.getInitialCards(),
-        renderer: (item, idCurrentUser) => {
-            return defaultCardList.setItem(createCard(item, idCurrentUser))
+    const newPlacePopup = new PopupWithForm('.popup_type_new-place', {
+        callBackSubmit: item => {
+            return api.postCard(item).then(item =>
+                defaultCardList.setItem(createCard(item, userID))).catch((err) => {
+                    console.log(err); // выведем ошибку в консоль
+                  })
         }
-    },
-    sectionPlaces);
+    })
 
-api.getInfoAuthor().then(({
-    _id
-}) => defaultCardList.renderItems(_id));
 
-//Добавление проверки форм
-formList.forEach((formElement) => {
-    const formValidation = new FormValidator({
-        formSelector: '.popup__container',
-        inputSelector: '.popup__input',
-        submitButtonSelector: '.popup__button-save',
-        inactiveButtonClass: 'button-disabled',
-        inputErrorClass: 'popup__input_type_error',
-        errorClass: 'popup__error_visible'
-    }, formElement);
+    newPlacePopup.setEventListeners()
+    ////////////
 
-    formValidation.enableValidation();
-})
+
+    const updateAvatarPopup = new PopupWithForm('.popup_type_update-avatar', {
+        callBackSubmit: item => {
+            return api.updateAvatar(item).then(({
+                avatar
+            }) => usrInfo.updateAvatar(avatar)).catch((err) => {
+                console.log(err); // выведем ошибку в консоль
+              })
+        }
+    })
+
+    updateAvatarPopup.setEventListeners()
+
+    avatar.addEventListener('click', () => updateAvatarPopup.open())
+
+    ////////////////
+    const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', {
+        callBackSubmit: item => {
+            return api.saveProfile(item).then(item => usrInfo.setUserInfo(item)).catch((err) => {
+                console.log(err); // выведем ошибку в консоль
+              })
+        }
+    });
+    editProfilePopup.setEventListeners()
+    ////////////
+
+    function viewUserInfoPopup(data) {
+        inputName.value = data.name;
+        inputProfession.value = data.about;
+    }
+
+
+    editProfileButton.addEventListener('click', () => { //Обработчик открытия редактирования профиля
+        viewUserInfoPopup(usrInfo.getUserInfo());
+        editProfilePopup.open()
+    })
+
+
+    placeAddButton.addEventListener('click', function () { //Обработчик открытия добавления нового места
+        newPlacePopup.open();
+    })
+
+    const defaultCardList = new Section({
+            items: initialCards,
+            renderer: (item, idCurrentUser) => {
+                defaultCardList.setItem(createCard(item, idCurrentUser))
+            }
+        },
+        sectionPlaces);
+
+    defaultCardList.renderItems(userID)
+
+    // api.getInfoAuthor().then(({
+    //     _id
+    // }) => defaultCardList.renderItems(_id));
+
+    //Добавление проверки форм
+    formList.forEach((formElement) => {
+        const formValidation = new FormValidator({
+            formSelector: '.popup__container',
+            inputSelector: '.popup__input',
+            submitButtonSelector: '.popup__button-save',
+            inactiveButtonClass: 'button-disabled',
+            inputErrorClass: 'popup__input_type_error',
+            errorClass: 'popup__error_visible'
+        }, formElement);
+
+        formValidation.enableValidation();
+    })
+}).catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  })

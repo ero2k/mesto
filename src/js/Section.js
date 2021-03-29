@@ -13,10 +13,11 @@ export default class Section {
   }
 
   renderItems(id) {
-    this._renderedItems.then(data =>
-      data.forEach(item => {
-        this._renderer(item, id);
-      })
-    )
+    this._renderedItems.forEach(item => {
+      this._renderer(item, id);
+    });
+    
   }
+
+
 }

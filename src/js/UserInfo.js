@@ -21,15 +21,14 @@ export default class UserInfo {
     }
 
     setUserInfo = (data) => {
-        data.then(({
-            name,
-            about,
-            avatar
-        }) => {
-            this._name.textContent = name;
-            this._description.textContent = about;
+
+            this._name.textContent = data.name;
+            this._description.textContent = data.about;
+            this._avatar.src = data.avatar
+        }
+
+        updateAvatar = (avatar) =>{
             this._avatar.src = avatar
-        })
+        }
 
     }
-}
